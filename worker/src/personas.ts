@@ -1,4 +1,5 @@
 import { getLlmClient, getLlmModel } from './llm'
+import { withRetry } from './utils'
 import type { WorldState } from './world-model'
 
 export interface PersonaOpinion {
@@ -79,13 +80,14 @@ async function runPersona(
 
   const client = getLlmClient()
   const model  = getLlmModel()
+  const market = state.market
 
-  try {
+  return withRetry(async () => {
     const response = await client.chat.completions.create({
       model,
       messages: [
         { role: 'system', content: persona.instruction },
-        { role: 'user',   content: buildPrompt(state.market) },
+        { role: 'user',   content: buildPrompt(market) },
       ],
       tools:       [TOOL],
       tool_choice: { type: 'function', function: { name: 'report_assumption' } },
@@ -93,7 +95,7 @@ async function runPersona(
     })
 
     const call = response.choices[0]?.message?.tool_calls?.[0]
-    if (!call) return null
+    if (!call) throw new Error('no tool_call in response')
 
     const args = JSON.parse(call.function.arguments) as {
       assumption: string
@@ -104,10 +106,7 @@ async function runPersona(
     }
 
     return { name: persona.name, ...args }
-  } catch (err) {
-    console.warn(`[personas] ${persona.name} failed:`, (err as Error).message)
-    return null
-  }
+  }, `personas/${persona.name}`)
 }
 
 export async function runPersonas(state: WorldState): Promise<PersonaOpinion[]> {

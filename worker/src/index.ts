@@ -85,7 +85,10 @@ async function main(): Promise<void> {
   console.log(`Poll interval: ${POLL_INTERVAL_MS / 1000}s`)
 
   await runCycle()
-  setInterval(runCycle, POLL_INTERVAL_MS)
+  setInterval(
+    () => runCycle().catch(err => console.warn('[cycle] unhandled error, skipping round:', err.message)),
+    POLL_INTERVAL_MS,
+  )
 }
 
 main().catch(err => {
