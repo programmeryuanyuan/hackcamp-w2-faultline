@@ -1,24 +1,24 @@
 # Project Context
-项目名: WorldSwarm
-One-liner: Anti-anchoring multi-agent reasoning swarm — prediction markets as first demo, pluggable adapters for DAO/DeFi
+项目名: Faultline
+One-liner: Assumption auditor for prediction markets — surfaces fragile assumptions hidden in market consensus, ranked by fragility, with sub-market GAP search
 方向: AI 数据 × Web3
 
 核心场景:
-- 用户角色: 预测市场研究员 / DAO 参与者
-- 痛点: LLM 看到市场价格即锚定，校准失败
-- AI Agent 动作: 3 Persona 独立推理（先不看市场价） → Bayesian 聚合 → Farcaster Cast → on-chain 下单
-- 关键链上动作: Polymarket Amoy testnet 下单 TX + SnapshotRegistry 留痕（Base Sepolia）
-- 演示魔法时刻: 3 agent 给出不同概率 → 聚合 → Farcaster Cast 时间戳 → Basescan TX（cast 在前、TX 在后）
+- 用户角色: 预测市场研究员 / 交易员
+- 痛点: 市场共识价格掩盖了隐含假设；LLM 看到价格即锚定
+- AI Agent 动作: 3 Persona 反锚定独立推理（不看市场价）→ 去重聚合 → 按脆弱度排名 → 搜索子市场 GAP → Farcaster Cast → on-chain 留痕
+- 关键链上动作: Farcaster Cast 时间戳（假设审计发布在前）+ SnapshotRegistry（Base Sepolia）
+- 演示魔法时刻: 3 persona 识别出不同假设 → 聚合排名 → 子市场 GAP 可见 → Farcaster Cast 链上可查
 
 # Tech Stack（必须遵守）
 - 语言: TypeScript strict
 - 运行时: Node.js >= v20 LTS，worker 用 tsx 直跑（不要 ts-node / tsc 编译后跑）
-- LLM: openai 包（OpenAI 兼容），model / baseURL / key 全从 .env 读，默认 DeepSeek
+- LLM: openai 包（OpenAI 兼容），model / baseURL / key 全从 .env 读
 - Web: Next.js 15 App Router，Tailwind CSS v3，recharts v2
 - 链上: viem 2.x（禁止用 ethers.js）
-- HTTP: axios（自动读 HTTPS_PROXY 环境变量，Polymarket 国内需挂代理）
+- 代理: undici + ProxyAgent（读 HTTPS_PROXY 环境变量，Polymarket 国内需挂代理）
 - 持久化: web/public/snapshot.json（禁止引入任何数据库）
-- Polymarket: axios 直调 REST（禁止用 @polymarket/clob-client-v2，代理下有 redirect bug）
+- Polymarket: undici 直调 Gamma REST API（禁止用 @polymarket/clob-client-v2）
 
 # Directory Convention
 - worker/src/       : 轮询主循环 + 各模块
@@ -30,6 +30,7 @@ One-liner: Anti-anchoring multi-agent reasoning swarm — prediction markets as 
 - 函数 camelCase，常量 SCREAMING_SNAKE_CASE
 - 注释只解释"为什么"，不解释"做什么"
 - 所有外部 IO（HTTP / RPC / LLM）包 try/catch，失败重试 1 次后 warn + 跳过本轮，不能让进程崩
+- update() 失败时不覆盖 snapshot.json（保留上次好数据）
 
 # Autonomy（决策授权）
 可自主（L2-L4）: 重构函数、添加错误处理、调整日志输出、修改 UI 样式、运行 lint
