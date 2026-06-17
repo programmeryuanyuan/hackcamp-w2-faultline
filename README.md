@@ -1,7 +1,6 @@
 # Faultline
 
-**Assumption Auditor for Prediction Markets.**
-Three anti-anchored AI personas surface the fragile assumptions hidden inside a Polymarket consensus — ranked by how easily each breaks — then search existing sub-markets to show the price GAP.
+**Every prediction market is a hidden bet on a set of assumptions — Faultline makes them visible, ranked, and priced.**
 
 ## Quick Start
 
