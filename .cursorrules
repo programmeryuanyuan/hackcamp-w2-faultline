@@ -1,0 +1,42 @@
+# Project Context
+项目名: WorldSwarm
+One-liner: Anti-anchoring multi-agent reasoning swarm — prediction markets as first demo, pluggable adapters for DAO/DeFi
+方向: AI 数据 × Web3
+
+核心场景:
+- 用户角色: 预测市场研究员 / DAO 参与者
+- 痛点: LLM 看到市场价格即锚定，校准失败
+- AI Agent 动作: 3 Persona 独立推理（先不看市场价） → Bayesian 聚合 → Farcaster Cast → on-chain 下单
+- 关键链上动作: Polymarket Amoy testnet 下单 TX + SnapshotRegistry 留痕（Base Sepolia）
+- 演示魔法时刻: 3 agent 给出不同概率 → 聚合 → Farcaster Cast 时间戳 → Basescan TX（cast 在前、TX 在后）
+
+# Tech Stack（必须遵守）
+- 语言: TypeScript strict
+- 运行时: Node.js >= v20 LTS，worker 用 tsx 直跑（不要 ts-node / tsc 编译后跑）
+- LLM: openai 包（OpenAI 兼容），model / baseURL / key 全从 .env 读，默认 DeepSeek
+- Web: Next.js 15 App Router，Tailwind CSS v3，recharts v2
+- 链上: viem 2.x（禁止用 ethers.js）
+- HTTP: axios（自动读 HTTPS_PROXY 环境变量，Polymarket 国内需挂代理）
+- 持久化: web/public/snapshot.json（禁止引入任何数据库）
+- Polymarket: axios 直调 REST（禁止用 @polymarket/clob-client-v2，代理下有 redirect bug）
+
+# Directory Convention
+- worker/src/       : 轮询主循环 + 各模块
+- web/app/          : Next.js App Router 页面
+- web/public/       : snapshot.json（worker 写、web 读）
+- contracts/        : Solidity 合约（Remix 部署，不进构建链）
+
+# Style
+- 函数 camelCase，常量 SCREAMING_SNAKE_CASE
+- 注释只解释"为什么"，不解释"做什么"
+- 所有外部 IO（HTTP / RPC / LLM）包 try/catch，失败重试 1 次后 warn + 跳过本轮，不能让进程崩
+
+# Autonomy（决策授权）
+可自主（L2-L4）: 重构函数、添加错误处理、调整日志输出、修改 UI 样式、运行 lint
+需先告知（L1）: 修改 package.json dependencies / scripts、重命名 public export
+必须先问（L0 — 绝对禁止）:
+  - 主网 / 涉及真实资产的交易
+  - 读取或写入 .env / 私钥 / 助记词文件
+  - 提交 .env 到 git（.gitignore 已配置，绝不 --force-add）
+  - 强制 push / 删除 git 分支
+  - 跳过 lint / test / pre-commit hook

@@ -1,0 +1,22 @@
+# env — never commit
+.env
+.env.*
+!.env.example
+
+# npm local prefix override — commit .npmrc so teammates get same behavior
+# (it only sets prefix=. and workspaces=false, no secrets)
+
+# deps
+node_modules/
+.pnp
+.pnp.js
+
+# build
+dist/
+.next/
+out/
+
+# misc
+.DS_Store
+*.log
+.vercel
