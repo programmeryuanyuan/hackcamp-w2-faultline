@@ -1,6 +1,6 @@
 # Faultline Worker — Alert Agent State Machine
 
-**场景**：预测市场价格异常监控 Agent，持续轮询价格，识别突变，决策告警并链上留痕，告警后进入冷却避免骚扰。
+**场景**：预测市场假设脆弱度监控 Agent，每轮 audit 产出后，判断市场是否过度自信、核心假设是否真的脆弱，决策告警并链上留痕，告警后进入冷却避免骚扰。
 
 ---
 
@@ -10,7 +10,7 @@
 stateDiagram-v2
     [*] --> MONITORING
 
-    MONITORING --> ANOMALY_DETECTED : |delta1| > 0.05\nOR |deltaMax| > 0.10
+    MONITORING --> ANOMALY_DETECTED : fragility=high\nAND marketPrice>0.80 OR <0.20\nAND sourcesCount≥2
     MONITORING --> ERROR             : LLM 调用失败
 
     ANOMALY_DETECTED --> ALERTING   : LLM → trigger_alert\nAND msSinceLastAlert ≥ 1800000
@@ -40,8 +40,11 @@ export enum AgentState {
 }
 
 export type StateContext = {
-  delta1:           number
-  deltaMax:         number
+  // assumption audit signals
+  topFragility:     'high' | 'medium' | 'low'
+  marketPrice:      number
+  sourcesCount:     number
+  // decision & execution
   msSinceLastAlert: number
   llmAction:        'trigger_alert' | 'record_only' | null
   alertSuccess:     boolean
@@ -52,9 +55,12 @@ export type StateContext = {
 export function transition(state: AgentState, ctx: StateContext): AgentState {
   switch (state) {
     case AgentState.MONITORING:
-      if (ctx.llmAction === null)  return AgentState.ERROR
-      if (Math.abs(ctx.delta1)  > 0.05 ||
-          Math.abs(ctx.deltaMax) > 0.10)  return AgentState.ANOMALY_DETECTED
+      if (ctx.llmAction === null) return AgentState.ERROR
+      if (
+        ctx.topFragility === 'high' &&
+        (ctx.marketPrice > 0.80 || ctx.marketPrice < 0.20) &&
+        ctx.sourcesCount >= 2
+      ) return AgentState.ANOMALY_DETECTED
       return AgentState.MONITORING
 
     case AgentState.ANOMALY_DETECTED:
@@ -87,8 +93,8 @@ export function transition(state: AgentState, ctx: StateContext): AgentState {
 
 | 状态 | 可用工具 | 说明 |
 |------|----------|------|
-| `MONITORING` | `record_only` | 稳定期只允许记录，不允许告警 |
-| `ANOMALY_DETECTED` | `trigger_alert`, `record_only` | 检测到异常，LLM 决策是否升级 |
+| `MONITORING` | `record_only` | audit 未触发条件，只允许记录 |
+| `ANOMALY_DETECTED` | `trigger_alert`, `record_only` | 三条件满足，LLM 决策是否升级 |
 | `ALERTING` | _(无 LLM 调用)_ | 纯执行：发 TG、anchor 上链 |
 | `COOLDOWN` | `record_only` | 冷却期内屏蔽 trigger_alert，防止重复告警 |
 | `ERROR` | _(无 LLM 调用)_ | 退避重试，不再消耗 LLM 配额 |
@@ -98,12 +104,29 @@ export function transition(state: AgentState, ctx: StateContext): AgentState {
 
 ---
 
+## 触发条件说明
+
+MONITORING → ANOMALY_DETECTED 需同时满足三个条件：
+
+| 条件 | 含义 |
+|------|------|
+| `topFragility === 'high'` | 排名第一的假设被 LLM 判定为高脆弱度 |
+| `marketPrice > 0.80 \| < 0.20` | 市场过度自信（赔率极端），错误定价风险最高 |
+| `sourcesCount >= 2` | ≥2 个 persona 独立验证，排除单一 LLM 噪声 |
+
+urgency 分级：
+- `'high'`：3 个 persona 全部同意 AND 市场价 > 0.90 或 < 0.10
+- `'medium'`：其他满足条件的情况
+
+---
+
 ## 与现有代码的对应关系
 
 | 状态机节点 | 代码位置 |
 |------------|----------|
-| MONITORING → ANOMALY_DETECTED 条件 | `alert-anomaly.ts` `delta1` / `deltaMax` 计算 |
+| MONITORING → ANOMALY_DETECTED 条件 | `alert-anomaly.ts` system prompt 规则 + `data.topAssumption` |
 | LLM 决策 | `llm.ts` `decide()` |
 | ALERTING 执行 | `alert-anomaly.ts` `trigger_alert` handler |
 | COOLDOWN 计时 | `alert-anomaly.ts` `lastAlertedAt` + `MIN_ALERT_INTERVAL_MS` |
 | ERROR 退避 | `utils.ts` `withRetry()` |
+| 调用时机 | `index.ts` `enrichWithSubMarkets` 之后，`worldModel.addAudit` 之前 |
