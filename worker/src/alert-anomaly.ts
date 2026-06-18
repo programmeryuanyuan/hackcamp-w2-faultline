@@ -1,34 +1,31 @@
-import OpenAI        from 'openai'
-import { decide }    from './llm'
+import OpenAI          from 'openai'
+import { decide }      from './llm'
 import { sendTGAlert } from './notify'
-import { anchor }    from './registry'
+import { anchor }      from './registry'
+import type { AssumptionAudit } from './aggregator'
 
-// Rolling 1-hour price window (one entry per poll cycle, default ~1 min).
-// Module-level so it survives across runCycle() calls in the same process.
-const PRICE_HISTORY: number[] = []
-const MAX_HISTORY = 60
+let lastAlertedAt = 0
+const MIN_ALERT_INTERVAL_MS = 30 * 60 * 1_000
 
-let lastAlertedAt = 0  // epoch ms, 0 = never
+const SYSTEM_PROMPT = `You are an assumption fragility monitor for a prediction market.
+Your goal: alert only when the market is overconfident AND a core assumption
+is genuinely at risk — the combination that creates real mispricing.
 
-const MIN_ALERT_INTERVAL_MS = 30 * 60 * 1_000  // 30 min cooldown
-
-const SYSTEM_PROMPT = `You are a price anomaly detector for a prediction market token.
-Your goal: surface genuine price shocks, suppress noise.
-
-Each round you receive:
-- data.delta1             : price change vs 1 round ago (signed, 0–1 scale)
-- data.deltaMax           : largest single-round move in the last hour
-- budget.msSinceLastAlert : ms since last alert
-- budget.minIntervalMs    : minimum cooldown between alerts
+Each round you receive the top-ranked assumption from an audit, the market
+price, and how many independent personas verified the assumption.
 
 Rules:
-- trigger_alert when: |delta1| > 0.05 OR |deltaMax| > 0.10,
-  AND msSinceLastAlert >= minIntervalMs.
-  urgency = 'high' if |delta1| > 0.10, 'medium' if > 0.05, else 'low'.
+- trigger_alert when ALL of:
+    data.topAssumption.fragility === 'high'
+    AND (data.marketPrice > 0.80 OR data.marketPrice < 0.20)
+    AND data.topAssumption.sourcesCount >= 2
+    AND budget.msSinceLastAlert >= budget.minIntervalMs
+  urgency = 'high' if sourcesCount === 3 AND (price > 0.90 OR price < 0.10)
+  urgency = 'medium' otherwise
 - Otherwise, record_only.
 
 Be conservative with alerts. record_only is fine —
-the user sees raw data on the dashboard and can act manually.
+the user sees full audit details on the dashboard.
 Always call exactly one tool.`
 
 const TOOLS: OpenAI.Chat.Completions.ChatCompletionTool[] = [
@@ -36,11 +33,11 @@ const TOOLS: OpenAI.Chat.Completions.ChatCompletionTool[] = [
     type: 'function',
     function: {
       name:        'trigger_alert',
-      description: 'Fire a Telegram alert and anchor the anomaly on-chain',
+      description: 'Fire a Telegram alert and anchor the assumption anomaly on-chain',
       parameters: {
         type:       'object',
         properties: {
-          reason:  { type: 'string', description: 'One sentence: what price anomaly was detected' },
+          reason:  { type: 'string', description: 'One sentence: why this assumption is urgent now' },
           urgency: { type: 'string', enum: ['low', 'medium', 'high'] },
         },
         required: ['reason', 'urgency'],
@@ -63,30 +60,27 @@ const TOOLS: OpenAI.Chat.Completions.ChatCompletionTool[] = [
   },
 ]
 
-/** Call once per poll cycle before alertOnAnomaly to keep history current. */
-export function recordPrice(price: number): void {
-  PRICE_HISTORY.push(price)
-  if (PRICE_HISTORY.length > MAX_HISTORY) PRICE_HISTORY.shift()
-}
-
-export async function alertOnAnomaly(tokenId: string, currentPrice: number): Promise<void> {
-  const prev   = PRICE_HISTORY.at(-2) ?? currentPrice
-  const delta1 = currentPrice - prev
-  const deltaMax = PRICE_HISTORY.length < 2
-    ? 0
-    : Math.max(...PRICE_HISTORY.slice(1).map((p, i) => Math.abs(p - PRICE_HISTORY[i])))
+export async function alertOnAnomaly(audit: AssumptionAudit): Promise<void> {
+  const top = audit.assumptions[0]
+  if (!top) return
 
   await decide({
-    scenario: 'alert-anomaly',
+    scenario: 'assumption-alert',
 
     data: {
-      tokenId,
-      currentPrice,
-      delta1:   parseFloat(delta1.toFixed(4)),
-      deltaMax: parseFloat(deltaMax.toFixed(4)),
+      marketQuestion:     audit.marketQuestion,
+      marketPrice:        audit.marketPrice,
+      highFragilityCount: audit.assumptions.filter(a => a.fragility === 'high').length,
+      topAssumption: {
+        fragility:     top.fragility,
+        assumption:    top.assumption,
+        breakingEvent: top.breakingEvent,
+        timeToBreak:   top.timeToBreak,
+        sourcesCount:  top.sources.length,
+      },
     },
 
-    history: [...PRICE_HISTORY],
+    history: [],
 
     budget: {
       msSinceLastAlert: lastAlertedAt === 0 ? Infinity : Date.now() - lastAlertedAt,
@@ -105,7 +99,10 @@ export async function alertOnAnomaly(tokenId: string, currentPrice: number): Pro
         lastAlertedAt = Date.now()
 
         await sendTGAlert(reason, urgency)
-        const txHash = await anchor(`anomaly:${tokenId}`, { tokenId, currentPrice, delta1, reason })
+        const txHash = await anchor(
+          `assumption-alert:${audit.marketQuestion.slice(0, 40)}`,
+          { marketQuestion: audit.marketQuestion, marketPrice: audit.marketPrice, reason },
+        )
 
         return { txHash: txHash ?? undefined, reason }
       },

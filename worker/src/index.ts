@@ -9,7 +9,7 @@ import { enrichWithSubMarkets } from './assumption-search'
 import { castDecision }         from './farcaster'
 import { recordOnChain }        from './registry'
 import { notify }               from './notify'
-import { recordPrice, alertOnAnomaly } from './alert-anomaly'
+import { alertOnAnomaly } from './alert-anomaly'
 
 const POLL_INTERVAL_MS = Number(process.env.POLL_INTERVAL_MS ?? 60_000)
 
@@ -23,12 +23,6 @@ async function runCycle(): Promise<void> {
   const state   = worldModel.getState()
   const market  = state.market
   if (!market) return  // don't overwrite snapshot with empty state on failed fetch
-
-  // price anomaly check — runs every cycle, independent of persona reasoning
-  recordPrice(market.probability)
-  await alertOnAnomaly(market.tokenId, market.probability).catch(
-    err => console.warn('[cycle] alertOnAnomaly failed, skipping:', err.message),
-  )
 
   worldModel.writeSnapshot()
 
@@ -46,6 +40,11 @@ async function runCycle(): Promise<void> {
 
   // G: search for existing sub-markets and attach prices (exclude parent by conditionId + question)
   await enrichWithSubMarkets(audit.assumptions, market.probability, market.conditionId, market.question)
+
+  // assumption fragility alert — fires only on overconfident market + high fragility + multi-persona consensus
+  await alertOnAnomaly(audit).catch(
+    err => console.warn('[cycle] alertOnAnomaly failed:', err.message),
+  )
 
   // store audit for dashboard
   worldModel.addAudit(audit)
