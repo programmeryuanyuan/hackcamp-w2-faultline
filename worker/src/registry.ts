@@ -4,7 +4,6 @@ import {
   parseAbi,
   keccak256,
   toHex,
-  publicActions,
 } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
 import { baseSepolia } from 'viem/chains'
@@ -17,7 +16,6 @@ const CONTRACT_ABI = parseAbi([
 // ── Anchor guard ─────────────────────────────────────────────────────────────
 const MAX_ANCHORS_PER_HOUR = 10
 const MIN_ANCHOR_INTERVAL_MS = 60_000          // at least 1 min between calls
-const MAX_BALANCE_SPEND_ETH  = 0.01            // hard stop if wallet < this
 
 const anchorTimestamps: number[] = []
 
@@ -38,18 +36,6 @@ function checkAnchorGuard(): { allowed: boolean; reason: string } {
   return { allowed: true, reason: '' }
 }
 
-async function checkBalanceGuard(ctx: NonNullable<ReturnType<typeof makeClient>>): Promise<{ allowed: boolean; reason: string }> {
-  try {
-    const balance = await ctx.client.getBalance({ address: ctx.client.account.address })
-    const balanceEth = Number(balance) / 1e18
-    if (balanceEth < MAX_BALANCE_SPEND_ETH)
-      return { allowed: false, reason: `wallet balance ${balanceEth.toFixed(4)} ETH below safety floor ${MAX_BALANCE_SPEND_ETH} ETH` }
-  } catch {
-    // if balance check fails, allow through — don't block on RPC hiccup
-  }
-  return { allowed: true, reason: '' }
-}
-
 function makeClient() {
   const rpc     = process.env.BASE_SEPOLIA_RPC
   const privKey = process.env.WALLET_PRIVATE_KEY
@@ -62,7 +48,7 @@ function makeClient() {
     account,
     chain: baseSepolia,
     transport: http(rpc),
-  }).extend(publicActions)
+  })
 
   return { client, address: address as `0x${string}` }
 }
@@ -87,13 +73,6 @@ export async function anchor(label: string, data: unknown): Promise<string | nul
   const ctx = makeClient()
   if (!ctx) {
     console.log('[registry] anchor skipped — env vars not set')
-    return null
-  }
-
-  // 3. balance floor
-  const balanceCheck = await checkBalanceGuard(ctx)
-  if (!balanceCheck.allowed) {
-    console.warn(`[registry] anchor rejected — ${balanceCheck.reason}`)
     return null
   }
 
