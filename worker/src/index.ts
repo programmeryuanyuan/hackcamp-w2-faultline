@@ -9,6 +9,7 @@ import { enrichWithSubMarkets } from './assumption-search'
 import { castDecision }         from './farcaster'
 import { recordOnChain }        from './registry'
 import { notify }               from './notify'
+import { recordPrice, alertOnAnomaly } from './alert-anomaly'
 
 const POLL_INTERVAL_MS = Number(process.env.POLL_INTERVAL_MS ?? 60_000)
 
@@ -22,6 +23,12 @@ async function runCycle(): Promise<void> {
   const state   = worldModel.getState()
   const market  = state.market
   if (!market) return  // don't overwrite snapshot with empty state on failed fetch
+
+  // price anomaly check — runs every cycle, independent of persona reasoning
+  recordPrice(market.probability)
+  await alertOnAnomaly(market.tokenId, market.probability).catch(
+    err => console.warn('[cycle] alertOnAnomaly failed, skipping:', err.message),
+  )
 
   worldModel.writeSnapshot()
 

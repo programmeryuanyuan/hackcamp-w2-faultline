@@ -31,6 +31,33 @@ function makeClient() {
   return { client, address: address as `0x${string}` }
 }
 
+/** Generic anchor: hash any payload and store it on-chain with a short label. */
+export async function anchor(label: string, data: unknown): Promise<string | null> {
+  const ctx = makeClient()
+  if (!ctx) {
+    console.log('[registry] anchor skipped — env vars not set')
+    return null
+  }
+
+  const payload  = JSON.stringify(data)
+  const dataHash = keccak256(toHex(payload))
+  const shortLabel = label.slice(0, 60)
+
+  try {
+    const txHash = await ctx.client.writeContract({
+      address: ctx.address,
+      abi:     CONTRACT_ABI,
+      functionName: 'anchor',
+      args:    [dataHash, shortLabel],
+    })
+    console.log(`[registry] anchor → https://sepolia.basescan.org/tx/${txHash}`)
+    return txHash
+  } catch (err) {
+    console.warn('[registry] anchor failed:', (err as Error).message)
+    return null
+  }
+}
+
 export async function recordOnChain(
   decision: AggregatedDecision,
   marketQuestion: string,

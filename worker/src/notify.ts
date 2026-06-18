@@ -5,3 +5,8 @@
 export async function notify(message: string): Promise<void> {
   console.log('[notify] TODO D5 –', message)
 }
+
+// D5 – single-message alert with urgency tag; real impl sends TG message
+export async function sendTGAlert(message: string, urgency: 'low' | 'medium' | 'high'): Promise<void> {
+  console.log(`[notify:tg] [${urgency.toUpperCase()}] ${message}`)
+}
