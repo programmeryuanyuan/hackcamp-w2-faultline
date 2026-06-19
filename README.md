@@ -87,6 +87,14 @@ Gamma API (price + description)
 - [ ] SnapshotRegistry on-chain proof (D5)
 - [ ] News trigger: detect assumption-breaking events in real time
 
+## LLM Decision Log — One Surprising Moment
+
+Round 10 of the anomaly smoke test: price dropped 12.2% — a bigger swing than the round that triggered the alert. The LLM chose `record_only`. What surprised me was the note it wrote:
+
+> *"Cooldown active — only 29 minutes have passed since last alert, 30 min required."*
+
+I passed `msSinceLastAlert` as raw milliseconds. It converted that to "29 minutes" on its own, then used that to explain the decision in human-readable terms. It wasn't pattern-matching the rule — it understood the rule's intent (prevent spam) and articulated the reasoning the way a person would.
+
 ## Why This vs. Other Approaches
 
 | Project | Swarm | Anti-anchor | Assumption output | Sub-market GAP | Farcaster |
