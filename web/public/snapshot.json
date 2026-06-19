@@ -1,70 +1,46 @@
 {
   "market": {
-    "question": "US x Iran permanent peace deal by June 15, 2026?",
-    "conditionId": "0xd86a816093fcd0a0e1ca440bc5ce199bd3c5a8d6139e044b076958164f8c5423",
-    "tokenId": "5904694069529905826680225678119990013628860098514322777023141327768111791078",
-    "probability": 0.9985,
-    "volume24h": 54259378.80680399,
-    "description": "This market will resolve to “Yes” if Iran and the United states agree to a permanent peace deal by the specified date, 11:59 PM ET. Otherwise, this market will resolve to “No”. \n\nA permanent peace deal refers to any agreement which explicitly indicates that military hostilities between the United States and Iran have ended or will permanently cease, or uses equivalent language clearly signaling a lasting end to military hostilities between the United States and Iran. Agreements that are explicitly temporary or which do not include a definitive agreement to end military hostilities between the US and Iran on a lasting basis (e.g. a temporary extension of the two-week ceasefire agreement announced on April 7, 2026), will not qualify.\n\nA qualifying agreement will be considered to have been established if either of the following conditions are met:\n\n- The United States and Iran each sign or formally adopt a written agreement (e.g. a treaty or multi-point agreement) which meets the above criteria.\n\n- Both the governments of the United States and Iran provide clear public confirmation that a qualifying agreement has been definitively established. Negotiations, statements of progress, or other statements which do not constitute a definitive announcement that a qualifying agreement has been reached will not count.\n\nThe primary resolution source for this market will be official information from the governments of the United States and Iran; however, a consensus of credible reporting may also be used.",
-    "endDate": "2026-06-15T00:00:00Z"
+    "question": "Will Switzerland win the 2026 FIFA World Cup?",
+    "conditionId": "0x3a26ca6425e2d98f14935670bc22cdb0744defc6f6d83c65f8c413a921c5c70c",
+    "tokenId": "62131913648515148266463816694306031394539656598501514114816028349608560215534",
+    "probability": 0.0095,
+    "volume24h": 5690712.014261002,
+    "description": "This market will resolve according to the national team that wins the 2026 FIFA World Cup.\n\nIf at any point it becomes impossible for this team to win the FIFA World Cup based on the rules of FIFA (e.g., they are eliminated in the knockout stage), this market will resolve immediately to “No”.\n\nIf the 2026 FIFA World Cup is permanently canceled or has not been completed by October 13, 2026, 11:59 PM this market will resolve to “Other”.\n\nThe primary resolution source will be official information from FIFA, however, a consensus of credible reporting may also be used.",
+    "endDate": "2026-07-20T00:00:00Z"
   },
   "snapshots": [
     {
-      "probability": 0.9985,
-      "timestamp": 1781714217716
+      "probability": 0.0095,
+      "timestamp": 1781869494474
     },
     {
-      "probability": 0.9985,
-      "timestamp": 1781714286634
+      "probability": 0.0095,
+      "timestamp": 1781869578914
     },
     {
-      "probability": 0.9985,
-      "timestamp": 1781714346838
+      "probability": 0.0095,
+      "timestamp": 1781869638859
     },
     {
-      "probability": 0.9985,
-      "timestamp": 1781714406650
+      "probability": 0.0095,
+      "timestamp": 1781869698814
     },
     {
-      "probability": 0.9985,
-      "timestamp": 1781714466661
-    },
-    {
-      "probability": 0.9985,
-      "timestamp": 1781714526738
-    },
-    {
-      "probability": 0.9985,
-      "timestamp": 1781714586974
-    },
-    {
-      "probability": 0.9985,
-      "timestamp": 1781714647607
-    },
-    {
-      "probability": 0.9985,
-      "timestamp": 1781714706830
-    },
-    {
-      "probability": 0.9985,
-      "timestamp": 1781714767078
-    },
-    {
-      "probability": 0.9985,
-      "timestamp": 1781714826727
+      "probability": 0.0095,
+      "timestamp": 1781869758896
     }
   ],
   "assumptionAudits": [
     {
-      "marketQuestion": "US x Iran permanent peace deal by June 15, 2026?",
-      "marketPrice": 0.9985,
+      "marketQuestion": "Will Switzerland win the 2026 FIFA World Cup?",
+      "marketPrice": 0.0095,
       "assumptions": [
         {
           "rank": 1,
           "fragility": "high",
-          "assumption": "Iran's Supreme Leader Khamenei (age 86 in 2026) remains alive and in control, maintaining the current regime's structural opposition to a permanent peace deal with the US.",
-          "breakingEvent": "Death or incapacitation of Iran's Supreme Leader Ali Khamenei, triggering a succession crisis and potential regime shift",
-          "timeToBreak": "Any time before June 15, 2026; most consequential if it occurs 3-12 months before resolution (mid-2025 to early 2026)",
+          "assumption": "Switzerland must be drawn into a favorable group and knockout bracket path that avoids top-tier teams (e.g., France, Brazil, Argentina, England) until at least the semifinals, requiring a relatively easy draw at the World Cup group stage allocation on a specific date.",
+          "breakingEvent": "2026 FIFA World Cup group stage draw (expected late 2025, exact date TBD by FIFA) placing Switzerland in a group with two or more strong opponents and/or a bracket path requiring them to face a top-5 ranked team before the quarterfinals.",
+          "timeToBreak": "Late 2025 (exact date TBD, typically November/December of the year before the tournament), approximately 7-8 months before resolution",
           "sources": [
             "Fundamentals Analyst",
             "Event Horizon",
@@ -73,98 +49,18 @@
           "subMarket": null
         }
       ],
-      "timestamp": 1781714836264
+      "timestamp": 1781869773755
     },
     {
-      "marketQuestion": "US x Iran permanent peace deal by June 15, 2026?",
-      "marketPrice": 0.9985,
+      "marketQuestion": "Will Switzerland win the 2026 FIFA World Cup?",
+      "marketPrice": 0.0095,
       "assumptions": [
         {
           "rank": 1,
           "fragility": "high",
-          "assumption": "Iran's Supreme Leader (Khamenei, age 86) remains alive and in control of Iran's nuclear and foreign policy decision-making through June 2026, maintaining the current regime's structural opposition to a permanent peace deal with the US.",
-          "breakingEvent": "Death or incapacitation of Ayatollah Ali Khamenei, or a leadership succession crisis in Iran that brings a more moderate faction to power willing to negotiate a permanent peace deal.",
-          "timeToBreak": "Any time between now and June 15, 2026 (resolution date)",
-          "sources": [
-            "Fundamentals Analyst",
-            "Event Horizon",
-            "Contrarian"
-          ],
-          "subMarket": null
-        }
-      ],
-      "timestamp": 1781714775829
-    },
-    {
-      "marketQuestion": "US x Iran permanent peace deal by June 15, 2026?",
-      "marketPrice": 0.9985,
-      "assumptions": [
-        {
-          "rank": 1,
-          "fragility": "high",
-          "assumption": "Iran's Supreme Leader (Khamenei, age 86) remains alive and in control of Iran's nuclear and foreign policy decision-making through June 2026.",
-          "breakingEvent": "Death or incapacitation of Iran's Supreme Leader Ali Khamenei, triggering a succession crisis and power struggle that would make any permanent peace deal impossible during the transition period.",
-          "timeToBreak": "Any time before June 15, 2026; most fragile if occurring within 3-6 months of the deadline",
-          "sources": [
-            "Fundamentals Analyst"
-          ],
-          "subMarket": null
-        },
-        {
-          "rank": 2,
-          "fragility": "high",
-          "assumption": "The US and Iran will not reach a permanent peace deal by June 15, 2026, because the structural obstacles (nuclear program, regional proxies, sanctions, domestic politics) are too deep to resolve in this timeframe.",
-          "breakingEvent": "The two-week ceasefire agreement announced on April 7, 2026 is extended or converted into a framework for permanent negotiations before it expires around April 21, 2026.",
-          "timeToBreak": "April 21, 2026 (approximately 55 days before resolution, when the temporary ceasefire expires)",
-          "sources": [
-            "Event Horizon",
-            "Contrarian"
-          ],
-          "subMarket": null
-        }
-      ],
-      "timestamp": 1781714715368
-    },
-    {
-      "marketQuestion": "US x Iran permanent peace deal by June 15, 2026?",
-      "marketPrice": 0.9985,
-      "assumptions": [
-        {
-          "rank": 1,
-          "fragility": "high",
-          "assumption": "Iran's Supreme Leader (Khamenei, age 86) remains alive and in power through June 2026, maintaining his long-standing opposition to permanent normalization with the US.",
-          "breakingEvent": "Death or incapacitation of Iran's Supreme Leader Ali Khamenei, triggering a leadership transition that could fundamentally alter Iran's negotiating posture",
-          "timeToBreak": "Any time before June 15, 2026 - most likely scenario would be sudden due to age/health",
-          "sources": [
-            "Fundamentals Analyst"
-          ],
-          "subMarket": null
-        },
-        {
-          "rank": 2,
-          "fragility": "high",
-          "assumption": "The US and Iran are on a trajectory toward a permanent peace deal by June 15, 2026, rather than escalating conflict or remaining in a state of no agreement.",
-          "breakingEvent": "The expiration or collapse of the two-week ceasefire agreement announced on April 7, 2026, without a permanent deal replacing it.",
-          "timeToBreak": "April 21, 2026 (14 days after the temporary ceasefire was announced)",
-          "sources": [
-            "Event Horizon",
-            "Contrarian"
-          ],
-          "subMarket": null
-        }
-      ],
-      "timestamp": 1781714655203
-    },
-    {
-      "marketQuestion": "US x Iran permanent peace deal by June 15, 2026?",
-      "marketPrice": 0.9985,
-      "assumptions": [
-        {
-          "rank": 1,
-          "fragility": "high",
-          "assumption": "Iran's Supreme Leader Khamenei (age 85+) remains alive and in control to authorize a permanent peace deal, or if he dies, his successor is equally willing to negotiate such a deal with the US.",
-          "breakingEvent": "Death or incapacitation of Iran's Supreme Leader Ali Khamenei, or a succession crisis that empowers hardliners opposed to any permanent peace with the US",
-          "timeToBreak": "Any time before June 15, 2026; Khamenei's health is a continuous unknown",
+          "assumption": "Switzerland must be drawn into a favorable group and knockout bracket path that avoids top-tier teams (e.g., France, Brazil, Argentina, England) until at least the semifinals, requiring a relatively easy draw at the 2025 FIFA World Cup group stage draw.",
+          "breakingEvent": "2026 FIFA World Cup group stage draw (expected late 2025) places Switzerland in a difficult group (e.g., with Brazil, France, or Argentina) or a knockout bracket path requiring them to beat multiple elite teams consecutively.",
+          "timeToBreak": "Late 2025 (exact date TBD by FIFA, typically November-December 2025), approximately 7-8 months before resolution",
           "sources": [
             "Fundamentals Analyst",
             "Event Horizon"
@@ -174,57 +70,27 @@
         {
           "rank": 2,
           "fragility": "high",
-          "assumption": "The current US-Iran ceasefire (announced April 7, 2026) will hold and serve as a foundation that can be extended or converted into a permanent deal by June 15, 2026.",
-          "breakingEvent": "A significant violation of the April 7 ceasefire by either side (e.g., attack on military assets, nuclear facility incident, or IRGC/Quds Force engagement)",
-          "timeToBreak": "Any day between now and June 15, 2026",
+          "assumption": "Switzerland's \"Golden Generation\" of players (e.g., Akanji, Xhaka, Shaqiri, Embolo, Sommer) will remain at or near peak form and availability through 2026, and no structural decline in Swiss player development or national team cohesion will occur before the tournament.",
+          "breakingEvent": "Key Swiss players announce international retirement before 2026, or a major injury sidelines a core player (e.g., Manuel Akanji or Granit Xhaka) for the tournament, or Switzerland fails to qualify for the knockout stage of UEFA Euro 2024/2028, revealing structural decline.",
+          "timeToBreak": "Between now and June 2026 — with key inflection points at Euro 2024 (June-July 2024), Nations League cycles, and qualification draws",
           "sources": [
             "Contrarian"
           ],
           "subMarket": null
         }
       ],
-      "timestamp": 1781714597637
+      "timestamp": 1781869711835
     },
     {
-      "marketQuestion": "US x Iran permanent peace deal by June 15, 2026?",
-      "marketPrice": 0.9985,
+      "marketQuestion": "Will Switzerland win the 2026 FIFA World Cup?",
+      "marketPrice": 0.0095,
       "assumptions": [
         {
           "rank": 1,
           "fragility": "high",
-          "assumption": "Iran's Supreme Leader Khamenei (age 86 as of 2025) remains alive and in effective control of Iran's nuclear and foreign policy decision-making through June 2026",
-          "breakingEvent": "Death or incapacitation of Iran's Supreme Leader Ali Khamenei, triggering a succession crisis and likely freezing any permanent peace negotiations",
-          "timeToBreak": "Any time before June 15, 2026; Khamenei's health is a continuous fragility",
-          "sources": [
-            "Fundamentals Analyst"
-          ],
-          "subMarket": null
-        },
-        {
-          "rank": 2,
-          "fragility": "high",
-          "assumption": "The US and Iran will not reach a permanent peace deal by June 15, 2026, because the two-week ceasefire agreement announced on April 7, 2026 is explicitly temporary and does not signal a lasting end to hostilities.",
-          "breakingEvent": "The April 7, 2026 two-week ceasefire expires without being extended or converted into a permanent deal, confirming the temporary nature of the agreement and eliminating any near-term path to a permanent deal.",
-          "timeToBreak": "April 21, 2026 (expiration of the two-week ceasefire announced April 7)",
-          "sources": [
-            "Event Horizon",
-            "Contrarian"
-          ],
-          "subMarket": null
-        }
-      ],
-      "timestamp": 1781714535504
-    },
-    {
-      "marketQuestion": "US x Iran permanent peace deal by June 15, 2026?",
-      "marketPrice": 0.9985,
-      "assumptions": [
-        {
-          "rank": 1,
-          "fragility": "high",
-          "assumption": "Iran's nuclear program has not advanced to weapons-grade enrichment levels that would make a permanent peace deal politically impossible for the US administration to sell domestically by June 2026.",
-          "breakingEvent": "IAEA Board of Governors resolution referring Iran to the UN Security Council for non-compliance, or IAEA report confirming Iran has enriched uranium to 90% (weapons-grade) or accumulated enough near-weapons-grade material for a nuclear device.",
-          "timeToBreak": "Next IAEA quarterly report expected ~February/March 2026, with potential Board of Governors meeting ~March 2026 — roughly 2-3 months before resolution date.",
+          "assumption": "Switzerland must be drawn into a favorable group and knockout bracket path that avoids top-tier teams (e.g., France, Brazil, Argentina, England) until at least the semifinals, requiring a relatively easy draw at the World Cup Final Draw.",
+          "breakingEvent": "2026 FIFA World Cup Final Draw results (expected late 2025), placing Switzerland in a group with multiple elite teams or a knockout bracket path requiring them to beat multiple top-5 ranked nations consecutively.",
+          "timeToBreak": "Late 2025 (approximately December 2025), roughly 7 months before the tournament begins",
           "sources": [
             "Fundamentals Analyst",
             "Event Horizon",
@@ -233,18 +99,18 @@
           "subMarket": null
         }
       ],
-      "timestamp": 1781714474671
+      "timestamp": 1781869650730
     },
     {
-      "marketQuestion": "US x Iran permanent peace deal by June 15, 2026?",
-      "marketPrice": 0.9985,
+      "marketQuestion": "Will Switzerland win the 2026 FIFA World Cup?",
+      "marketPrice": 0.0095,
       "assumptions": [
         {
           "rank": 1,
           "fragility": "high",
-          "assumption": "Iran's Supreme Leader Khamenei (age 86, with reported health issues) remains alive and in control through June 2026, as his death or incapacitation would likely derail any permanent deal negotiations.",
-          "breakingEvent": "Death or incapacitation of Iran's Supreme Leader Ali Khamenei, or credible reports of his serious health decline",
-          "timeToBreak": "Any time before June 15, 2026 (resolution date)",
+          "assumption": "Switzerland must be drawn into a favorable group and knockout bracket path that avoids top-tier teams (e.g., France, Brazil, Argentina, England) until at least the semifinals, requiring a relatively weak Group A or B placement and a manageable Round of 16 opponent.",
+          "breakingEvent": "2026 FIFA World Cup group stage draw (expected late 2025, exact date TBD by FIFA)",
+          "timeToBreak": "Late 2025 (approximately 7-8 months before resolution), when the draw reveals Switzerland's group and potential knockout path",
           "sources": [
             "Fundamentals Analyst"
           ],
@@ -253,9 +119,9 @@
         {
           "rank": 2,
           "fragility": "high",
-          "assumption": "The current geopolitical trajectory of US-Iran relations will continue without a dramatic, unexpected breakthrough toward a permanent peace deal before June 15, 2026.",
-          "breakingEvent": "The US and Iran announce resumption of formal negotiations toward a comprehensive peace agreement, with both sides publicly committing to a timeline before June 15, 2026.",
-          "timeToBreak": "Any time between now and June 15, 2026 — but earliest potential is the next round of diplomatic engagement (possibly as soon as the next UN General Assembly session or a bilateral meeting announced in the coming months)",
+          "assumption": "Switzerland has a realistic path to winning the 2026 FIFA World Cup despite never having won it before and being a mid-tier European team.",
+          "breakingEvent": "Switzerland is eliminated in the group stage or Round of 16 of the 2026 FIFA World Cup",
+          "timeToBreak": "June-July 2026 (group stage and knockout rounds), earliest possible elimination ~June 15-18, 2026 (Matchday 3 of group stage)",
           "sources": [
             "Event Horizon",
             "Contrarian"
@@ -263,88 +129,18 @@
           "subMarket": null
         }
       ],
-      "timestamp": 1781714416502
+      "timestamp": 1781869592303
     },
     {
-      "marketQuestion": "US x Iran permanent peace deal by June 15, 2026?",
-      "marketPrice": 0.9985,
+      "marketQuestion": "Will Switzerland win the 2026 FIFA World Cup?",
+      "marketPrice": 0.0095,
       "assumptions": [
         {
           "rank": 1,
           "fragility": "high",
-          "assumption": "Iran's Supreme Leader Khamenei (age 86, with reported health issues) remains alive and in effective control of Iran's nuclear and foreign policy decision-making through June 2026.",
-          "breakingEvent": "Death or incapacitation of Iran's Supreme Leader Ali Khamenei, triggering a succession crisis and likely freezing any permanent diplomatic agreements.",
-          "timeToBreak": "Any time before June 15, 2026; Khamenei's health is a continuous risk factor",
-          "sources": [
-            "Fundamentals Analyst"
-          ],
-          "subMarket": null
-        },
-        {
-          "rank": 2,
-          "fragility": "high",
-          "assumption": "The US and Iran will not reach a permanent peace deal by June 15, 2026, because the two-week ceasefire agreement announced on April 7, 2026 is explicitly temporary and does not signal a lasting end to hostilities.",
-          "breakingEvent": "The April 7, 2026 two-week ceasefire expires without being extended or converted into a permanent deal, confirming the temporary nature of the agreement and eliminating any near-term pathway to a permanent peace deal.",
-          "timeToBreak": "April 21, 2026 (when the two-week ceasefire announced April 7 expires)",
-          "sources": [
-            "Event Horizon"
-          ],
-          "subMarket": null
-        },
-        {
-          "rank": 3,
-          "fragility": "high",
-          "assumption": "The current trajectory of US-Iran relations is linear and reversible, meaning that the escalation-de-escalation cycle of the past decades can be broken by a single comprehensive agreement rather than requiring a fundamental restructuring of both countries' political incentives and regional security architectures.",
-          "breakingEvent": "A major Iranian retaliation against Israel or US forces in the region (e.g., using advanced missiles or proxy forces) that occurs after a period of positive diplomatic signaling, demonstrating that the two countries' regional proxy conflicts operate on independent tracks from bilateral negotiations.",
-          "timeToBreak": "Any point between now and June 2026, but most likely during a period of apparent diplomatic progress when a regional incident (strike on Iranian facility, proxy escalation in Yemen/Syria/Iraq, or Israeli operation) triggers an Iranian response that the US cannot ignore",
-          "sources": [
-            "Contrarian"
-          ],
-          "subMarket": null
-        }
-      ],
-      "timestamp": 1781714358333
-    },
-    {
-      "marketQuestion": "US x Iran permanent peace deal by June 15, 2026?",
-      "marketPrice": 0.9985,
-      "assumptions": [
-        {
-          "rank": 1,
-          "fragility": "high",
-          "assumption": "Iran's Supreme Leader Khamenei (age 86 as of 2026) remains alive and in control of Iran's nuclear and foreign policy decision-making through June 15, 2026.",
-          "breakingEvent": "Death, incapacitation, or removal of Ayatollah Khamenei as Supreme Leader, triggering a succession crisis or shift in Iran's negotiating posture",
-          "timeToBreak": "Any time before June 15, 2026; most fragile if occurring within 3-6 months of the deadline",
-          "sources": [
-            "Fundamentals Analyst"
-          ],
-          "subMarket": null
-        },
-        {
-          "rank": 2,
-          "fragility": "high",
-          "assumption": "The US and Iran will not reach a permanent peace deal by June 15, 2026, because the structural geopolitical barriers (nuclear program, regional proxies, sanctions regime) are too deep to resolve in this timeframe.",
-          "breakingEvent": "The two-week ceasefire agreement announced on April 7, 2026, is extended or converted into a more durable framework before its expiration around April 21, 2026.",
-          "timeToBreak": "April 21, 2026 (approximately 55 days before resolution, when the temporary ceasefire expires)",
-          "sources": [
-            "Event Horizon",
-            "Contrarian"
-          ],
-          "subMarket": null
-        }
-      ],
-      "timestamp": 1781714294514
-    },
-    {
-      "marketQuestion": "US x Iran permanent peace deal by June 15, 2026?",
-      "marketPrice": 0.9985,
-      "assumptions": [
-        {
-          "rank": 1,
-          "fragility": "high",
-          "assumption": "Iran's Supreme Leader Khamenei (age 86, with reported health issues) must remain alive and in effective control through June 2026 to authorize any permanent peace deal.",
-          "breakingEvent": "Death or incapacitation of Iran's Supreme Leader Ali Khamenei, triggering a succession crisis and likely freezing all major diplomatic initiatives",
-          "timeToBreak": "Any time before June 15, 2026",
+          "assumption": "Switzerland must be drawn into a favorable group and knockout bracket path that avoids top-tier teams (e.g., France, Brazil, Argentina, England) until at least the semifinals, given their Elo ranking (~15th-20th globally) and historical performance (never past quarterfinals since 1954).",
+          "breakingEvent": "2026 FIFA World Cup group stage draw (expected late 2025, exact date TBD by FIFA, likely November/December 2025)",
+          "timeToBreak": "Approximately 7-8 months before resolution (draw expected late 2025)",
           "sources": [
             "Fundamentals Analyst",
             "Event Horizon",
@@ -353,307 +149,145 @@
           "subMarket": null
         }
       ],
-      "timestamp": 1781714225119
+      "timestamp": 1781869513482
     }
   ],
   "swarmDecisions": [
     {
-      "timestamp": 1781714836264,
+      "timestamp": 1781869776139,
       "opinions": [
         {
           "name": "Fundamentals Analyst",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] Iran's Supreme Leader Khamenei (age 86 in 2026) remains alive and in control, maintaining the current regime's structural opposition to a permanent peace deal with the US. | Death or incapacitation of Iran's Supreme Leader Ali Khamenei, triggering a succession crisis and potential regime shift"
+          "reasoning": "[high] Switzerland must be drawn into a favorable group and knockout bracket path that avoids top-tier teams (e.g., France, Brazil, Argentina, England) until at least the semifinals, requiring a relatively easy draw at the World Cup group stage allocation on a specific date. | 2026 FIFA World Cup group stage draw (expected late 2025, exact date TBD by FIFA) placing Switzerland in a group with two or more strong opponents and/or a bracket path requiring them to face a top-5 ranked team before the quarterfinals."
         },
         {
           "name": "Event Horizon",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] The US and Iran will not reach a permanent peace deal by June 15, 2026, because the two-week ceasefire agreement announced on April 7, 2026 is explicitly temporary and the structural obstacles to a permanent deal remain insurmountable. | The two-week ceasefire (announced April 7, 2026) expires around April 21, 2026, and either (a) both sides announce a permanent peace deal before the ceasefire expires, or (b) the ceasefire is extended with language signaling a permanent end to hostilities, or (c) the ceasefire collapses and hostilities resume, confirming the consensus."
+          "reasoning": "[high] Switzerland has a realistic path to winning the 2026 FIFA World Cup, requiring them to advance through group stage and multiple knockout rounds. | Switzerland is eliminated in the group stage or first knockout round of the 2026 FIFA World Cup"
         },
         {
           "name": "Contrarian",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] The current US-Iran ceasefire (announced April 7, 2026) represents a genuine de-escalation pathway that both sides intend to build upon toward a permanent deal, rather than a tactical pause both are using to rearm and reposition for renewed conflict. | Any reported violation of the April 7 ceasefire by either side, or statements by either government accusing the other of using the ceasefire to rearm or reposition forces."
+          "reasoning": "[high] Switzerland's \"golden generation\" of players (e.g., Akanji, Xhaka, Shaqiri, Embolo, Sommer) will still be at or near their peak performance levels in 2026, and the team's core structural advantages (defensive organization, tournament experience, group-stage consistency) will translate into a knockout-stage run deep enough to win the tournament. | Key Swiss players (e.g., Granit Xhaka, Manuel Akanji, Yann Sommer) suffer significant decline, retire from international duty, or sustain long-term injuries before or during the 2026 World Cup; or Switzerland fails to qualify from their group in 2026."
         }
       ],
-      "aggregate": 0.9985,
+      "aggregate": 0.0095,
       "kellyFraction": 0,
       "farcasterCastHash": null,
       "txHash": null
     },
     {
-      "timestamp": 1781714775829,
+      "timestamp": 1781869714183,
       "opinions": [
         {
           "name": "Fundamentals Analyst",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] Iran's Supreme Leader (Khamenei, age 86) remains alive and in control of Iran's nuclear and foreign policy decision-making through June 2026, maintaining the current regime's structural opposition to a permanent peace deal with the US. | Death or incapacitation of Ayatollah Ali Khamenei, or a leadership succession crisis in Iran that brings a more moderate faction to power willing to negotiate a permanent peace deal."
+          "reasoning": "[high] Switzerland must be drawn into a favorable group and knockout bracket path that avoids top-tier teams (e.g., France, Brazil, Argentina, England) until at least the semifinals, requiring a relatively easy draw at the 2025 FIFA World Cup group stage draw. | 2026 FIFA World Cup group stage draw (expected late 2025) places Switzerland in a difficult group (e.g., with Brazil, France, or Argentina) or a knockout bracket path requiring them to beat multiple elite teams consecutively."
         },
         {
           "name": "Event Horizon",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] The US and Iran will not reach a permanent peace deal by June 15, 2026, because the two-week ceasefire agreement announced on April 7, 2026 is explicitly temporary and does not signal a lasting end to hostilities. | The April 7, 2026 two-week ceasefire expires without being replaced by a permanent deal, confirming the temporary nature of the current arrangement and eliminating the most plausible near-term path to a permanent agreement."
+          "reasoning": "[high] Switzerland has a realistic path to winning the 2026 FIFA World Cup given their historical performance and current squad strength. | Switzerland fails to advance past the group stage or is eliminated in the Round of 16 at the 2026 World Cup"
         },
         {
           "name": "Contrarian",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] The U.S. and Iran both have a functional, legitimate central government capable of negotiating and ratifying a permanent peace deal by June 2026. | A major internal political crisis, leadership vacuum, or regime collapse in either country (e.g., Iranian Supreme Leader incapacitation, U.S. constitutional crisis, or a coup/revolution in Iran)"
+          "reasoning": "[high] Switzerland's \"Golden Generation\" of players (e.g., Akanji, Xhaka, Shaqiri, Embolo, Sommer) will remain at or near peak form and availability through 2026, and no structural decline in Swiss player development or national team cohesion will occur before the tournament. | Key Swiss players announce international retirement before 2026, or a major injury sidelines a core player (e.g., Manuel Akanji or Granit Xhaka) for the tournament, or Switzerland fails to qualify for the knockout stage of UEFA Euro 2024/2028, revealing structural decline."
         }
       ],
-      "aggregate": 0.9985,
+      "aggregate": 0.0095,
       "kellyFraction": 0,
       "farcasterCastHash": null,
       "txHash": null
     },
     {
-      "timestamp": 1781714715368,
+      "timestamp": 1781869653124,
       "opinions": [
         {
           "name": "Fundamentals Analyst",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] Iran's Supreme Leader (Khamenei, age 86) remains alive and in control of Iran's nuclear and foreign policy decision-making through June 2026. | Death or incapacitation of Iran's Supreme Leader Ali Khamenei, triggering a succession crisis and power struggle that would make any permanent peace deal impossible during the transition period."
+          "reasoning": "[high] Switzerland must be drawn into a favorable group and knockout bracket path that avoids top-tier teams (e.g., France, Brazil, Argentina, England) until at least the semifinals, requiring a relatively easy draw at the World Cup Final Draw. | 2026 FIFA World Cup Final Draw results (expected late 2025), placing Switzerland in a group with multiple elite teams or a knockout bracket path requiring them to beat multiple top-5 ranked nations consecutively."
         },
         {
           "name": "Event Horizon",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] The US and Iran will not reach a permanent peace deal by June 15, 2026, because the structural obstacles (nuclear program, regional proxies, sanctions, domestic politics) are too deep to resolve in this timeframe. | The two-week ceasefire agreement announced on April 7, 2026 is extended or converted into a framework for permanent negotiations before it expires around April 21, 2026."
+          "reasoning": "[high] Switzerland will win the 2026 FIFA World Cup, which requires them to progress through group stage and knockout rounds culminating in the final on July 19, 2026. | Switzerland's elimination in the group stage or first knockout round (Round of 32 or Round of 16)"
         },
         {
           "name": "Contrarian",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] The current US and Iranian governments both desire and are capable of reaching a permanent, not temporary, peace deal within the next 15 months, despite the April 7, 2026 ceasefire being explicitly temporary. | A senior US or Iranian official states that permanent peace is not on the table, or that negotiations are limited to temporary arrangements only."
+          "reasoning": "[high] Switzerland can produce a world-class striker or goal-scoring threat capable of winning a World Cup, despite never having produced a top-10 global goal scorer in the modern era. | Switzerland fails to qualify for the knockout stages of the 2026 World Cup, or their top scorers in qualifying/tournament are midfielders/defenders, confirming the structural goal-scoring deficit."
         }
       ],
-      "aggregate": 0.9985,
+      "aggregate": 0.0095,
       "kellyFraction": 0,
       "farcasterCastHash": null,
       "txHash": null
     },
     {
-      "timestamp": 1781714655203,
+      "timestamp": 1781869594962,
       "opinions": [
         {
           "name": "Fundamentals Analyst",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] Iran's Supreme Leader (Khamenei, age 86) remains alive and in power through June 2026, maintaining his long-standing opposition to permanent normalization with the US. | Death or incapacitation of Iran's Supreme Leader Ali Khamenei, triggering a leadership transition that could fundamentally alter Iran's negotiating posture"
+          "reasoning": "[high] Switzerland must be drawn into a favorable group and knockout bracket path that avoids top-tier teams (e.g., France, Brazil, Argentina, England) until at least the semifinals, requiring a relatively weak Group A or B placement and a manageable Round of 16 opponent. | 2026 FIFA World Cup group stage draw (expected late 2025, exact date TBD by FIFA)"
         },
         {
           "name": "Event Horizon",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] The US and Iran are on a trajectory toward a permanent peace deal by June 15, 2026, rather than escalating conflict or remaining in a state of no agreement. | The expiration or collapse of the two-week ceasefire agreement announced on April 7, 2026, without a permanent deal replacing it."
+          "reasoning": "[high] Switzerland has a realistic path to winning the 2026 FIFA World Cup despite never having won it before and being a mid-tier European team. | Switzerland is eliminated in the group stage or Round of 16 of the 2026 FIFA World Cup"
         },
         {
           "name": "Contrarian",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] The US and Iran both have functioning, stable governments capable of negotiating and ratifying a permanent peace deal by mid-2026. | A change in US administration following the 2024 election that reverses diplomatic engagement, or a leadership crisis/regime change in Iran that disrupts negotiations."
+          "reasoning": "[high] Switzerland's \"Golden Generation\" of players (e.g., Akanji, Xhaka, Shaqiri, Embolo, Sommer) will still be at or near their peak performance levels in 2026, and no critical talent pipeline failure will occur before then. | Key Swiss players announce international retirement before 2026, suffer career-altering injuries, or fail to qualify for the tournament."
         }
       ],
-      "aggregate": 0.9985,
+      "aggregate": 0.0095,
       "kellyFraction": 0,
       "farcasterCastHash": null,
       "txHash": null
     },
     {
-      "timestamp": 1781714597637,
+      "timestamp": 1781869515099,
       "opinions": [
         {
           "name": "Fundamentals Analyst",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] Iran's Supreme Leader Khamenei (age 85+) remains alive and in control to authorize a permanent peace deal, or if he dies, his successor is equally willing to negotiate such a deal with the US. | Death or incapacitation of Iran's Supreme Leader Ali Khamenei, or a succession crisis that empowers hardliners opposed to any permanent peace with the US"
+          "reasoning": "[high] Switzerland must be drawn into a favorable group and knockout bracket path that avoids top-tier teams (e.g., France, Brazil, Argentina, England) until at least the semifinals, given their Elo ranking (~15th-20th globally) and historical performance (never past quarterfinals since 1954). | 2026 FIFA World Cup group stage draw (expected late 2025, exact date TBD by FIFA, likely November/December 2025)"
         },
         {
           "name": "Event Horizon",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] The US and Iran will not reach a permanent peace deal by June 15, 2026, because the two-week ceasefire agreement announced April 7, 2026 is explicitly temporary and does not signal a lasting end to hostilities. | The two-week ceasefire agreement (announced April 7, 2026) expires around April 21, 2026 — if instead of returning to hostilities, both sides announce an extension or conversion into a permanent deal, the consensus that no deal is imminent breaks."
+          "reasoning": "[high] Switzerland has a realistic path to winning the 2026 FIFA World Cup, requiring them to advance through group stage and multiple knockout rounds. | Switzerland fails to qualify for the 2026 FIFA World Cup via UEFA qualifying or loses in the group stage."
         },
         {
           "name": "Contrarian",
           "probability": 0,
           "confidence": 0,
-          "reasoning": "[high] The current US-Iran ceasefire (announced April 7, 2026) will hold and serve as a foundation that can be extended or converted into a permanent deal by June 15, 2026. | A significant violation of the April 7 ceasefire by either side (e.g., attack on military assets, nuclear facility incident, or IRGC/Quds Force engagement)"
+          "reasoning": "[high] Switzerland's \"golden generation\" of players (e.g., Xhaka, Akanji, Shaqiri, Sommer) will still be at or near their peak performance levels in 2026, and no critical talent pipeline gap exists behind them. | Key Swiss players announce international retirement before 2026, or a major injury to a core player (e.g., Manuel Akanji or Granit Xhaka) during qualifying or pre-tournament friendlies."
         }
       ],
-      "aggregate": 0.9985,
-      "kellyFraction": 0,
-      "farcasterCastHash": null,
-      "txHash": null
-    },
-    {
-      "timestamp": 1781714535504,
-      "opinions": [
-        {
-          "name": "Fundamentals Analyst",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] Iran's Supreme Leader Khamenei (age 86 as of 2025) remains alive and in effective control of Iran's nuclear and foreign policy decision-making through June 2026 | Death or incapacitation of Iran's Supreme Leader Ali Khamenei, triggering a succession crisis and likely freezing any permanent peace negotiations"
-        },
-        {
-          "name": "Event Horizon",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] The US and Iran will not reach a permanent peace deal by June 15, 2026, because the two-week ceasefire agreement announced on April 7, 2026 is explicitly temporary and does not signal a lasting end to hostilities. | The April 7, 2026 two-week ceasefire expires without being extended or converted into a permanent deal, confirming the temporary nature of the agreement and eliminating any near-term path to a permanent deal."
-        },
-        {
-          "name": "Contrarian",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] The U.S. and Iran both have a stable, functioning government structure capable of negotiating and ratifying a permanent peace deal by June 2026. | A major leadership transition, coup, revolution, or collapse of governmental authority in either country (e.g., Iranian Supreme Leader succession crisis, U.S. presidential transition disruption, or a military coup in either nation)."
-        }
-      ],
-      "aggregate": 0.9985,
-      "kellyFraction": 0,
-      "farcasterCastHash": null,
-      "txHash": null
-    },
-    {
-      "timestamp": 1781714474671,
-      "opinions": [
-        {
-          "name": "Fundamentals Analyst",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] Iran's nuclear program has not advanced to weapons-grade enrichment levels that would make a permanent peace deal politically impossible for the US administration to sell domestically by June 2026. | IAEA Board of Governors resolution referring Iran to the UN Security Council for non-compliance, or IAEA report confirming Iran has enriched uranium to 90% (weapons-grade) or accumulated enough near-weapons-grade material for a nuclear device."
-        },
-        {
-          "name": "Event Horizon",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] The US and Iran are on a trajectory toward a permanent peace deal by June 15, 2026, rather than escalating toward conflict or remaining in a state of no agreement. | The expiration or collapse of the two-week ceasefire agreement announced on April 7, 2026, without extension or replacement."
-        },
-        {
-          "name": "Contrarian",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] The U.S. and Iran both have stable, continuous governments with the authority and legitimacy to negotiate and implement a permanent peace deal by June 2026. | A change in U.S. administration (2025 inauguration) or Iranian leadership transition (e.g., Supreme Leader succession) that repudiates prior negotiations."
-        }
-      ],
-      "aggregate": 0.9985,
-      "kellyFraction": 0,
-      "farcasterCastHash": null,
-      "txHash": null
-    },
-    {
-      "timestamp": 1781714416502,
-      "opinions": [
-        {
-          "name": "Fundamentals Analyst",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] Iran's Supreme Leader Khamenei (age 86, with reported health issues) remains alive and in control through June 2026, as his death or incapacitation would likely derail any permanent deal negotiations. | Death or incapacitation of Iran's Supreme Leader Ali Khamenei, or credible reports of his serious health decline"
-        },
-        {
-          "name": "Event Horizon",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] The current geopolitical trajectory of US-Iran relations will continue without a dramatic, unexpected breakthrough toward a permanent peace deal before June 15, 2026. | The US and Iran announce resumption of formal negotiations toward a comprehensive peace agreement, with both sides publicly committing to a timeline before June 15, 2026."
-        },
-        {
-          "name": "Contrarian",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] The current US-Iran ceasefire (announced April 7, 2026) is structurally stable enough to serve as a foundation for a permanent peace deal within 14 months. | Any significant violation of the April 7 ceasefire by either side (e.g., drone strike, naval incident, proxy attack attributed to Iran, or US airstrike on Iranian-aligned forces)"
-        }
-      ],
-      "aggregate": 0.9985,
-      "kellyFraction": 0,
-      "farcasterCastHash": null,
-      "txHash": null
-    },
-    {
-      "timestamp": 1781714358334,
-      "opinions": [
-        {
-          "name": "Fundamentals Analyst",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] Iran's Supreme Leader Khamenei (age 86, with reported health issues) remains alive and in effective control of Iran's nuclear and foreign policy decision-making through June 2026. | Death or incapacitation of Iran's Supreme Leader Ali Khamenei, triggering a succession crisis and likely freezing any permanent diplomatic agreements."
-        },
-        {
-          "name": "Event Horizon",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] The US and Iran will not reach a permanent peace deal by June 15, 2026, because the two-week ceasefire agreement announced on April 7, 2026 is explicitly temporary and does not signal a lasting end to hostilities. | The April 7, 2026 two-week ceasefire expires without being extended or converted into a permanent deal, confirming the temporary nature of the agreement and eliminating any near-term pathway to a permanent peace deal."
-        },
-        {
-          "name": "Contrarian",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] The current trajectory of US-Iran relations is linear and reversible, meaning that the escalation-de-escalation cycle of the past decades can be broken by a single comprehensive agreement rather than requiring a fundamental restructuring of both countries' political incentives and regional security architectures. | A major Iranian retaliation against Israel or US forces in the region (e.g., using advanced missiles or proxy forces) that occurs after a period of positive diplomatic signaling, demonstrating that the two countries' regional proxy conflicts operate on independent tracks from bilateral negotiations."
-        }
-      ],
-      "aggregate": 0.9985,
-      "kellyFraction": 0,
-      "farcasterCastHash": null,
-      "txHash": null
-    },
-    {
-      "timestamp": 1781714294514,
-      "opinions": [
-        {
-          "name": "Fundamentals Analyst",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] Iran's Supreme Leader Khamenei (age 86 as of 2026) remains alive and in control of Iran's nuclear and foreign policy decision-making through June 15, 2026. | Death, incapacitation, or removal of Ayatollah Khamenei as Supreme Leader, triggering a succession crisis or shift in Iran's negotiating posture"
-        },
-        {
-          "name": "Event Horizon",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] The US and Iran will not reach a permanent peace deal by June 15, 2026, because the structural geopolitical barriers (nuclear program, regional proxies, sanctions regime) are too deep to resolve in this timeframe. | The two-week ceasefire agreement announced on April 7, 2026, is extended or converted into a more durable framework before its expiration around April 21, 2026."
-        },
-        {
-          "name": "Contrarian",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] The U.S. and Iran both have stable, unitary governments capable of making and enforcing a permanent peace deal that will hold beyond June 15, 2026. | A change in U.S. administration following the 2024 presidential election that reverses Iran policy, or a leadership transition in Iran (e.g., succession crisis after Khamenei's health decline) that invalidates prior commitments."
-        }
-      ],
-      "aggregate": 0.9985,
-      "kellyFraction": 0,
-      "farcasterCastHash": null,
-      "txHash": null
-    },
-    {
-      "timestamp": 1781714225120,
-      "opinions": [
-        {
-          "name": "Fundamentals Analyst",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] Iran's Supreme Leader Khamenei (age 86, with reported health issues) must remain alive and in effective control through June 2026 to authorize any permanent peace deal. | Death or incapacitation of Iran's Supreme Leader Ali Khamenei, triggering a succession crisis and likely freezing all major diplomatic initiatives"
-        },
-        {
-          "name": "Event Horizon",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] The US and Iran will not reach a permanent peace deal by June 15, 2026, because the two-week ceasefire agreement announced April 7, 2026 is explicitly temporary and does not signal a lasting end to hostilities. | The two-week ceasefire (announced April 7, 2026) expires around April 21, 2026. If both sides extend or convert it into a permanent ceasefire before it lapses, that would be the earliest binary event that shatters the \"No\" consensus."
-        },
-        {
-          "name": "Contrarian",
-          "probability": 0,
-          "confidence": 0,
-          "reasoning": "[high] The current Iranian regime will remain in power and continue to be the legitimate negotiating counterparty for the United States through June 2026. | A regime change, coup, or major internal political upheaval in Iran that removes or sidelines the current government before June 15, 2026."
-        }
-      ],
-      "aggregate": 0.9985,
+      "aggregate": 0.0095,
       "kellyFraction": 0,
       "farcasterCastHash": null,
       "txHash": null
     }
   ],
-  "lastUpdated": 1781714836264
+  "lastUpdated": 1781869776139
 }

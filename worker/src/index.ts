@@ -8,7 +8,7 @@ import { aggregate }            from './aggregator'
 import { enrichWithSubMarkets } from './assumption-search'
 import { castDecision }         from './farcaster'
 import { recordOnChain }        from './registry'
-import { notify }               from './notify'
+import { notify, setupCommands, botState } from './notify'
 import { alertOnAnomaly } from './alert-anomaly'
 
 const POLL_INTERVAL_MS = Number(process.env.POLL_INTERVAL_MS ?? 60_000)
@@ -80,6 +80,8 @@ async function runCycle(): Promise<void> {
   })
   worldModel.writeSnapshot()
 
+  botState.totalDecisions++
+
   await notify(
     `Audit: ${audit.assumptions[0]?.assumption.slice(0, 80)} ` +
     `[${audit.assumptions[0]?.fragility}]`
@@ -89,6 +91,10 @@ async function runCycle(): Promise<void> {
 async function main(): Promise<void> {
   console.log('Faultline starting…')
   console.log(`Poll interval: ${POLL_INTERVAL_MS / 1000}s`)
+
+  await setupCommands().catch(err =>
+    console.warn('[main] TG setupCommands failed, continuing without interactive bot:', err.message)
+  )
 
   await runCycle()
   setInterval(

@@ -1,6 +1,6 @@
 import OpenAI          from 'openai'
 import { decide }      from './llm'
-import { sendTGAlert } from './notify'
+import { sendTGAlert, botState } from './notify'
 import { anchor }      from './registry'
 import type { AssumptionAudit } from './aggregator'
 
@@ -98,11 +98,38 @@ export async function alertOnAnomaly(audit: AssumptionAudit): Promise<void> {
 
         lastAlertedAt = Date.now()
 
-        await sendTGAlert(reason, urgency)
+        const URGENCY_ICON = { low: '⚠️', medium: '🚨', high: '🔴' }
+        const msg = [
+          `*${URGENCY_ICON[urgency]} Faultline Alert [${urgency.toUpperCase()}]*`,
+          `*Q:* ${audit.marketQuestion.slice(0, 80)}`,
+          `*Price:* ${(audit.marketPrice * 100).toFixed(1)}%`,
+          `*Top assumption:* ${top.assumption.slice(0, 100)}`,
+          `*Breaking event:* ${top.breakingEvent.slice(0, 80)}`,
+          `*Reason:* ${reason}`,
+        ].join('\n')
+
+        const dashboardUrl = process.env.DASHBOARD_URL  // must be https:// for TG to accept
+        const inlineButtons = [{ text: '🔇 Mute 1h', callback_data: 'mute_60' }]
+        if (dashboardUrl?.startsWith('https://')) {
+          inlineButtons.unshift({ text: '📊 Dashboard', url: dashboardUrl } as never)
+        }
+
+        await sendTGAlert(msg, {
+          dedupeKey:      `alert:${audit.marketQuestion.slice(0, 40)}:${urgency}`,
+          dedupeWindowMs: 30 * 60 * 1_000,
+          extra: {
+            reply_markup: { inline_keyboard: [inlineButtons] },
+          },
+        })
+
         const txHash = await anchor(
           `assumption-alert:${audit.marketQuestion.slice(0, 40)}`,
           { marketQuestion: audit.marketQuestion, marketPrice: audit.marketPrice, reason },
         )
+
+        if (txHash) {
+          botState.lastTxUrl = `https://sepolia.basescan.org/tx/${txHash}`
+        }
 
         return { txHash: txHash ?? undefined, reason }
       },
