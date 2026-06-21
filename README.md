@@ -2,6 +2,12 @@
 
 **Every prediction market is a hidden bet on a set of assumptions — Faultline makes them visible, ranked, and priced.**
 
+## Links
+
+- 🌐 Live Demo: https://hackcamp-w2-faultline.vercel.app
+- 💻 GitHub: https://github.com/programmeryuanyuan/hackcamp-w2-faultline
+- 📜 On-chain decision log: https://sepolia.basescan.org/address/YOUR_CONTRACT_ADDRESS#events
+
 ## Quick Start
 
 ```bash
