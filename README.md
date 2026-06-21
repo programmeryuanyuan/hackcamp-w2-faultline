@@ -6,7 +6,7 @@
 
 - 🌐 Live Demo: https://hackcamp-w2-faultline.vercel.app
 - 💻 GitHub: https://github.com/programmeryuanyuan/hackcamp-w2-faultline
-- 📜 On-chain decision log: https://sepolia.basescan.org/address/YOUR_CONTRACT_ADDRESS#events
+- 📜 On-chain decision log: https://sepolia.basescan.org/address/0x04Ac696E4075D439841bb75b30ddEA7Cea27a67D#events
 
 ## Quick Start
 
