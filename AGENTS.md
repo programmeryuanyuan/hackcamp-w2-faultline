@@ -1,6 +1,8 @@
 # Project Context
 项目名: Faultline
-One-liner: Assumption auditor for prediction markets — surfaces fragile assumptions hidden in market consensus, ranked by fragility, with sub-market GAP search
+Tagline: Seismograph for prediction markets / 预测市场的地震仪
+One-liner (EN): Faultline runs three price-blind AI analysts through every prediction market — no anchoring, no consensus — to rank fragile assumptions before one breaks, then stamps the audit on Base so you prove you called it first.
+One-liner (中): Faultline 派三个反锚定 AI 分析师扫描每个预测市场的隐含假设——全程不看价格——按脆弱度排名，事件揭晓前把审计时间戳上链，让"提前看到断层"这件事不可篡改。
 方向: AI 数据 × Web3
 
 核心场景:

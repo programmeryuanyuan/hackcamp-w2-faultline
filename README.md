@@ -1,6 +1,10 @@
 # Faultline
 
-**Every prediction market is a hidden bet on a set of assumptions — Faultline makes them visible, ranked, and priced.**
+> **Seismograph for prediction markets** · 预测市场的地震仪
+
+**Faultline** runs three price-blind AI analysts through every prediction market — no anchoring, no consensus — to rank fragile assumptions before one breaks, then stamps the audit on Base so you prove you called it first.
+
+**Faultline** 派三个反锚定 AI 分析师扫描每个预测市场的隐含假设——全程不看价格——按脆弱度排名，事件揭晓前把审计时间戳上链，让"提前看到断层"这件事不可篡改。
 
 ## Links
 
