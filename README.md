@@ -21,7 +21,7 @@
 
 ## The Problem & The Solution
 
-A prediction market at 65% isn't saying "65% of people think it happens." It's saying: *three hidden assumptions hold simultaneously*. Let one fault line slip — the price collapses overnight. The traders who 4x'd that night weren't watching the price. They were watching what the price was **betting on**.
+A prediction market at 65% isn't saying "65% of people think it happens." It's saying: *a set of hidden assumptions all hold simultaneously*. Let one fault line slip — the price collapses overnight. The traders who 4x'd that night weren't watching the price. They were watching what the price was **betting on**.
 
 Existing tools give you more probability estimates. None tell you what those probabilities are built on. Worse: feed an LLM the market price first and it anchors — consensus gets smuggled in through the back door.
 
