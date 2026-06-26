@@ -63,6 +63,20 @@
 
 ---
 
+### 候选 4（池外线上）：BNB Hack — Online Edition
+**链接**：https://www.bnbchain.org/en/hackathons/bnb-ai-hack  
+**主办**：BNB Chain 官方（bnbchain.org 直发） ｜ 奖池：$700,000 USD，AI / DeSoc / DeSci / DePIN 四赛道
+
+① **资格**：线上全球开放，无 fresh code 要求。**无固定截止时间**（官方保留随时关闭提交权），越早提交越好。核心要求：项目需运行在 BNB Chain 上（当前 Faultline 在 Base Sepolia，需额外部署一条）。
+② **截止时间**：滚动提交，D19 完成基础交付物后立即可投，无被 deadline 卡住的风险。
+③ **赛道契合度**：中。AI Track 命中（AI agent + 链上数据 + 假设审计）；DeSoc Track 可用 Farcaster cast 角度切入（去中心化社交发布审计结果）。主要缺口：当前链是 Base Sepolia，需额外在 BSC Testnet 部署一份合约。
+④ **交付物**：GitHub + Live URL + Demo 视频 + 路线图（评分维度：Design、Innovation、Open Source、Integration、Scalability）。
+⑤ **候选（条件投）**：奖池大、竞争宽、无 deadline 压力，适合"D19 后顺手多投一场"。前提是把 SnapshotRegistry 部署到 BSC Testnet（同一份合约，约 1 小时），README 写"双链存证：Base Sepolia + BSC"即可达标。
+
+**技术栈缺口**：BSC Testnet 部署（同合约，1 小时）+ `registry.ts` 加 `BNB_CHAIN_RPC` 分支（约 30 分钟）。
+
+---
+
 ## Week 3 五天计划
 
 | 天 | 核心任务 | 目标 Niche |
