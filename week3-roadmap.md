@@ -49,6 +49,20 @@
 
 ---
 
+### 候选 3（池外线上）：CROO Agent Hackathon
+**链接**：https://dorahacks.io/hackathon/croo-hackathon  
+**平台**：DoraHacks，线上全球开放 ｜ 奖池：$10,000 USD，6 赛道
+
+① **资格**：线上开放，无 fresh code 要求，现有项目可参赛。核心要求：在 CROO Agent Store 上架可调用 Agent，集成 CROO Agent Protocol（CAP），完成至少 1 次真实 USDC 结算。
+② **截止时间**：2026-07-09（北京时间 7月10日约 08:00），晚于 D21（6/28），Week 3 结束后还有 11 天冲刺窗口。
+③ **赛道契合度**：中高。官方示例 Agent 里已有 **Polymarket Broker**（"AI analysis + paid agent services for prediction markets"），Faultline 的假设审计功能直接重合，包装成"按次收费的 Assumption Auditor Agent"即可命中。
+④ **交付物**：CROO Agent Store 可调用 Agent + GitHub + Demo 视频（展示调用 → USDC 付款 → 返回 audit 全流程）。
+⑤ **投（推荐）**：改造成本约 1.5～2 天——在现有 worker 上加 HTTP 接口（接收 question → 返回 audit JSON）+ CAP SDK 收费层，核心 Demo 不动。D19 后完成 Agent 上架，是最适合线上单独提交的选项。
+
+**技术栈缺口**：CROO Agent Protocol SDK（CAP）— 加 Express 接口 + CAP 集成 + USDC 结算，约 1.5 天。
+
+---
+
 ## Week 3 五天计划
 
 | 天 | 核心任务 | 目标 Niche |
